@@ -1,8 +1,12 @@
-from flask import Flask
+from flask import Flask, request
 from flask_restful import Resource, Api
 from json import dumps
 from flask_jsonpify import jsonify
+import requests
+
 import os
+import sys
+import json
 
 app = Flask(__name__)
 api = Api(app)
@@ -10,12 +14,22 @@ api = Api(app)
 
 class Hello_World(Resource):
     def get(self):
-        return "hello world"
+        if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
+            if not request.args.get("hub.verify_token") == os.environ["VERIFY_TOKEN"]:
+                return "Verification token mismatch", 403
+            return request.args["hub.challenge"], 200
+
+        return "hello world", 200
 
 
 class Food(Resource):
     def get(self, value):
         return "you input: {}".format(value)
+
+
+def log(message):
+    print(str(message))
+    sys.stdout.flush()
 
 api.add_resource(Hello_World, '/')
 api.add_resource(Food, '/food/<value>')
