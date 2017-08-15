@@ -20,4 +20,4 @@ api.add_resource(Hello_World, '/')
 api.add_resource(Food, '/food/<value>')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5002')
+    app.run(host='0.0.0.0', port='33507')
