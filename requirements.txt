@@ -8,11 +8,8 @@ itsdangerous==0.24
 Jinja2==2.9.6
 MarkupSafe==1.0
 pycurl==7.19.3
-python-apt===0.9.3.5ubuntu2
 python-dateutil==2.6.1
 pytz==2017.2
 six==1.10.0
 SQLAlchemy==1.1.13
-ufw===0.34-rc-0ubuntu2
-unattended-upgrades==0.1
 Werkzeug==0.12.2
