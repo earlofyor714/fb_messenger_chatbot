@@ -16,12 +16,12 @@ class Hello_World(Resource):
     def get(self):
         if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
             if not request.args.get("hub.verify_token") == os.environ["VERIFY_TOKEN"]:
+                log("token mismatch: {}".format(os.environ["VERIFY_TOKEN"]))
                 return "Verification token mismatch", 403
             log("hub challenge: {}".format(request.args["hub.challenge"]))
             # a = request.args["hub.challenge".split("\n")
             # a = a.split('"')[1]
             return request.args["hub.challenge"], 200
-
         return "hello world", 200
 
 
