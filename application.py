@@ -16,11 +16,9 @@ class Hello_World(Resource):
     def get(self):
         if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
             if not request.args.get("hub.verify_token") == os.environ["VERIFY_TOKEN"]:
-                log("token mismatch: {}".format(os.environ["VERIFY_TOKEN"]))
+                log("token mismatch")
                 return "Verification token mismatch", 403
             log("hub challenge: {}".format(request.args["hub.challenge"]))
-            # a = request.args["hub.challenge".split("\n")
-            # a = a.split('"')[1]
             return request.args["hub.challenge"], 200
         return "hello world", 200
 
@@ -39,4 +37,4 @@ api.add_resource(Food, '/food/<value>')
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5002))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=port, debug=True)
