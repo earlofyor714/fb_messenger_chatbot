@@ -6,7 +6,6 @@ Flask-RESTful==0.3.6
 Flask-SQLAlchemy==2.2
 itsdangerous==0.24
 Jinja2==2.9.6
-language-selector==0.1
 MarkupSafe==1.0
 pycurl==7.19.3
 pygobject==3.12.0
