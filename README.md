@@ -25,7 +25,7 @@ Heroku Instructions:
 
 To add configurations to heroku:
 
-  'heroku config:add /<config_name/>=/<value/>'
+  'heroku config:add configName=value'
 
 To view logs:
   'heroku logs --tail'
