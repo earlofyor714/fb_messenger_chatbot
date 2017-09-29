@@ -7,8 +7,11 @@ A simple chatbot designed to run on FB Messenger.  Hosted on Heroku.
 Structure:
 
 application.py   : Web application setup, and the main file.
+
 requirements.txt : Configurations for dependencies for Heroku
+
 procfile         : Run configurations for Heroku
+
 Vagrantfile      : Configurations if you want to run a VM locally.  Not set up with Heroku.
 
 ====================
