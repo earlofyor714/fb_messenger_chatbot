@@ -6,7 +6,7 @@ class GoogleInterpreter:
         client = language.LanguageServiceClient()
         document = self.getDocument(message)
 
-        response = client.analyze_entities(
+        response = client.analyze_sentiment(
             document=document,
             encoding_type='UTF32'
         )
