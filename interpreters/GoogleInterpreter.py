@@ -12,7 +12,7 @@ class GoogleInterpreter:
         )
 
         sentiment = response.document_sentiment
-        sendingMessage = "score: " + sentiment.score + ", mag: " + sentiment.magnitude
+        sendingMessage = "score: " + str(sentiment.score) + ", mag: " + str(sentiment.magnitude)
         return sendingMessage
 
     def getDocument(self, content, lang='en', tp='PLAIN_TEXT'):
