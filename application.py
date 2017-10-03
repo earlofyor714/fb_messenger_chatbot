@@ -6,6 +6,7 @@ import requests
 from flask import Flask, request
 
 from interpreters.GoogleInterpreter import GoogleInterpreter
+from interpreters.WitInterpreter import WitInterpreter
 
 app = Flask(__name__)
 
@@ -41,7 +42,10 @@ def webhook():
                     message_text = messaging_event["message"]["text"]  # the message's text
 
                     # Google
-                    interpreter = GoogleInterpreter()
+                    # interpreter = GoogleInterpreter()
+
+                    # Wit
+                    interpreter = WitInterpreter()
 
                     # send_message(sender_id, "roger that!")
                     send_message(sender_id, interpreter.interpret(message_text))
