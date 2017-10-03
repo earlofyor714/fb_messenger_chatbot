@@ -8,7 +8,8 @@ class WitInterpreter:
             'send': self.send
         }
 
-        client = Wit(access_token=access_token, actions=actions)
+        # client = Wit(access_token=access_token, actions=actions)
+        client = Wit(access_token)
         response = client.message(message)
         return response
 
