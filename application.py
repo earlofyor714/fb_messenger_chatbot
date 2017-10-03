@@ -45,10 +45,12 @@ def webhook():
                     # interpreter = GoogleInterpreter()
 
                     # Wit
+                    log("Testing interpreter")
                     interpreter = WitInterpreter()
 
                     # send_message(sender_id, "roger that!")
                     send_message(sender_id, interpreter.interpret(message_text))
+                    log("message sent")
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass

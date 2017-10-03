@@ -11,7 +11,7 @@ class WitInterpreter:
         # client = Wit(access_token=access_token, actions=actions)
         client = Wit(access_token)
         response = client.message(message)
-        return response
+        return "test"
 
     def send(self, request, response):
         message = request + ": " + response
