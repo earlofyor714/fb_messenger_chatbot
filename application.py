@@ -44,7 +44,7 @@ def webhook():
                     interpreter = GoogleInterpreter()
 
                     # send_message(sender_id, "roger that!")
-                    send_message(sender_id, interpreter.interpret())
+                    send_message(sender_id, interpreter.interpret(message_text))
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
