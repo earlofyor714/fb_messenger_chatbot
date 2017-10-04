@@ -5,6 +5,7 @@ import json
 import requests
 from flask import Flask, request
 
+from interpreters.ApiInterpreter import ApiInterpreter
 from interpreters.GoogleInterpreter import GoogleInterpreter
 from interpreters.WitInterpreter import WitInterpreter
 
@@ -45,8 +46,10 @@ def webhook():
                     # interpreter = GoogleInterpreter()
 
                     # Wit
-                    log("Testing interpreter")
-                    interpreter = WitInterpreter()
+                    # interpreter = WitInterpreter()
+
+                    #API
+                    interpreter = ApiInterpreter()
 
                     # send_message(sender_id, "roger that!")
                     send_message(sender_id, interpreter.interpret(message_text))
