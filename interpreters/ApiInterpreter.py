@@ -8,4 +8,4 @@ class ApiInterpreter:
         request = client.text_request()
         request.query = message
         response = request.getresponse()
-        return response
+        return str(response)
