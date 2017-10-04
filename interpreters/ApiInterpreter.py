@@ -10,13 +10,14 @@ class ApiInterpreter:
         request = client.text_request()
         request.query = message
         response = self.parseHttpResponse(request.getresponse())
-        return str(response)
+        return str(response["result"])
 
     def parseHttpResponse(self, httpResponse):
         byteResponse = httpResponse.read()
         jsonResponse = byteResponse.decode('utf8').replace("'", '"')
         data = json.loads(jsonResponse)
-        return json.dumps(data, indent=4, sort_keys=True)
+        return data
+        # return json.dumps(data, indent=4, sort_keys=True)
 
 # {
 #     'object': 'page',
