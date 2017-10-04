@@ -7,5 +7,6 @@ class ApiInterpreter:
         client = apiai.ApiAI(access_token)
         request = client.text_request()
         request.query = message
-        response = request.getresponse()
+        httpResponse = request.getresponse()
+        response = httpResponse.read()
         return str(response)
