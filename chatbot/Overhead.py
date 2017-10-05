@@ -16,6 +16,8 @@ class Overhead:
             #response += "name: " + str(entity.name) + ",\n" + \
             #            "metadata: " + str(entity.metadata) + ",\n" + \
             #            "type: " + str(entity.metadata) + "\n"
-            response += str(entity.name) + "\n"
+            response += "name: " + str(entity.name) + "\n"
+            for md in entity.metadata:
+                response += str(md) + "\n"
 
         return response
