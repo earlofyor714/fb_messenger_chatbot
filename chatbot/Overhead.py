@@ -17,7 +17,9 @@ class Overhead:
             #            "metadata: " + str(entity.metadata) + ",\n" + \
             #            "type: " + str(entity.metadata) + "\n"
             response += "name: " + str(entity.name) + "\n"
+            log("entity: {}".format(str(entity)))
+            log("individual metadata: {}".format(str(entity.metadata)))
             for md in entity.metadata:
-                response += str(md.key) + ": " + str(md.value) + "\n"
+                response += str(md) + "\n"
 
         return response
