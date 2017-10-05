@@ -6,29 +6,30 @@ class GoogleInterpreter:
         client = language.LanguageServiceClient()
         document = self.getDocument(message)
 
-        # response = self.getSentiment(client, document)
-        # response = self.getEntities(client, document)
-        response = self.getSyntax(client, document)
+        response = self.analyzeSentiment(client, document)
+        # response = self.analyzeEntities(client, document)
+        # response = self.analyzeSyntax(client, document)
 
         return response
 
-    def getSentiment(self, client, document):
+    def analyzeSentiment(self, client, document):
         response = client.analyze_sentiment(
             document=document,
             encoding_type='UTF32'
         )
         sentiment = response.document_sentiment
-        sendingMessage = "score: " + str(sentiment.score) + ", mag: " + str(sentiment.magnitude)
-        return sendingMessage
+        # sendingMessage = "score: " + str(sentiment.score) + ", mag: " + str(sentiment.magnitude)
+        # return sendingMessage
+        return str(sentiment)
 
-    def getEntities(self, client, document):
+    def analyzeEntities(self, client, document):
         response = client.analyze_entities(
             document=document,
             encoding_type='UTF32'
         )
         return str(response.entities)
 
-    def getSyntax(self, client, document):
+    def analyzeSyntax(self, client, document):
         response = client.analyze_syntax(
             document=document,
             encoding_type='UTF32'
