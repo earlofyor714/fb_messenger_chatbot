@@ -9,10 +9,12 @@ class Overhead:
         self.witInterpreter = WitInterpreter()
         self.ApiInterpreter = ApiInterpreter()
 
-    def reply(self, message, log=None):
+    def reply(self, message, log=print):
         response = "Google entities:\n"
         entities = self.googleInterpreter.analyzeEntities(message)
         for entity in entities:
+            if len(response) > 638:
+                break
             response += "name: " + str(entity.name) + "\n" + \
                         "type: " + str(entity.type) + "\n" + \
                         "wiki: " + str(entity.metadata['wikipedia_url']) + "\n" + \
@@ -20,8 +22,12 @@ class Overhead:
             log("entity: {}".format(str(entity)))
         return response
 
-    def reply_syntax(self, message, log=None):
+    def reply_syntax(self, message, log=print):
         response = "Google syntax:\n"
         syntax = self.googleInterpreter.analyzeSyntax(message)
-        response += str(syntax)
+        log(str(syntax))
+        for word in syntax:
+            if len(response) > 638:
+                break
+            response += str(word)
         return response
