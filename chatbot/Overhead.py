@@ -16,6 +16,7 @@ class Overhead:
             response += "name: " + str(entity.name) + "\n"
             log("entity:\n {}".format(str(entity)))
             log("type:\n {0}".format(entity.type))
-            log("metadata:\n {0}".format(entity.metadata['key']))
+            for md in entity.metadata:
+                log("metadata: {0}\n".format(md))
             log("salience: {0}".format(entity.salience))
         return response
