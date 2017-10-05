@@ -14,5 +14,7 @@ class Overhead:
         entities = self.googleInterpreter.analyzeEntities(message)
         for entity in entities:
             response += "name: " + str(entity.name) + "\n"
-            log("entity: {}".format(str(entity)))
+            log("entity:\n {}".format(str(entity)))
+            log("type:\n {}".format(str(entity.metadata)))
+            log("metadata:\n {}".format(str(entity.metadata)))
         return response
