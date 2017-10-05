@@ -13,7 +13,7 @@ class Overhead:
         response = "Google entities:\n"
         entities = self.googleInterpreter.analyzeEntities(message)
         for entity in entities:
-            if len(response) > 638:
+            if len(response) > 500:
                 break
             response += "name: " + str(entity.name) + "\n" + \
                         "type: " + str(entity.type) + "\n" + \
@@ -27,7 +27,7 @@ class Overhead:
         syntax = self.googleInterpreter.analyzeSyntax(message)
         log(str(syntax))
         for word in syntax:
-            if len(response) > 638:
+            if len(response) + len(str(word)) > 638:
                 break
             response += str(word)
         return response
