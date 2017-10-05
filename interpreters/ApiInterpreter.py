@@ -19,31 +19,6 @@ class ApiInterpreter:
         return data
         # return json.dumps(data, indent=4, sort_keys=True)
 
-# {
-#     'object': 'page',
-#     'entry': [
-#         {
-#             'id': '454685428250537',
-#             'time': 1507136872150,
-#             'messaging': [
-#                 {
-#                     'sender': {
-#                         'id': '1562796290438836'
-#                     },
-#                     'recipient': {
-#                         'id': '454685428250537'
-#                     }, 'timestamp': 1507136872014,
-#                     'message': {
-#                         'mid': 'mid.$cAAGdiJXkr_1lGaDmTle6FuU856Zf',
-#                         'seq': 29100,
-#                         'text': 'what do you say now'
-#                     }
-#                 }
-#             ]
-#         }
-#     ]
-# }
-
 # 2017-10-04T17:07:52.509428+00:00 app[web.1]: sending message to 1562796290438836:
 # {
 #     "id": "ad4eba5b-ed4d-42b2-b9fc-ed12ab2e6bf0",

@@ -5,9 +5,7 @@ import json
 import requests
 from flask import Flask, request
 
-from interpreters.ApiInterpreter import ApiInterpreter
-from interpreters.GoogleInterpreter import GoogleInterpreter
-from interpreters.WitInterpreter import WitInterpreter
+from chatbot.Overhead import Overhead
 
 app = Flask(__name__)
 
@@ -42,18 +40,9 @@ def webhook():
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     message_text = messaging_event["message"]["text"]  # the message's text
 
-                    # Google
-                    # interpreter = GoogleInterpreter()
-
-                    # Wit
-                    # interpreter = WitInterpreter()
-
-                    #API
-                    interpreter = ApiInterpreter()
-
+                    chatbot = Overhead()
                     # send_message(sender_id, "roger that!")
-                    send_message(sender_id, interpreter.interpret(message_text))
-                    log("message sent")
+                    send_message(sender_id, chatbot.reply(message_text, log))
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
