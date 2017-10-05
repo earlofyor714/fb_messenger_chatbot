@@ -13,13 +13,6 @@ class Overhead:
         response = "Google:\n"
         entities = self.googleInterpreter.analyzeEntities(message)
         for entity in entities:
-            #response += "name: " + str(entity.name) + ",\n" + \
-            #            "metadata: " + str(entity.metadata) + ",\n" + \
-            #            "type: " + str(entity.metadata) + "\n"
             response += "name: " + str(entity.name) + "\n"
             log("entity: {}".format(str(entity)))
-            # log("individual metadata: {}".format(str(entity.metadata)))
-            # for md in entity.metadata:
-            #     response += str(md) + "\n"
-
         return response
