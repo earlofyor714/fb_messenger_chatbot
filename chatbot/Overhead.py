@@ -16,9 +16,6 @@ class Overhead:
             response += "name: " + str(entity.name) + "\n" + \
                         "type: " + str(entity.type) + "\n" + \
                         "wiki: " + str(entity.metadata['wikipedia_url']) + "\n" + \
-                        "salience: " + str(entity.salience)
+                        "salience: " + str(entity.salience) + "\n"
             log("entity: {}".format(str(entity)))
-            log("type: {0}".format(entity.type))
-            log("md test: {0}".format(entity.metadata['wikipedia_url']))
-            log("salience: {0}".format(entity.salience))
         return response
