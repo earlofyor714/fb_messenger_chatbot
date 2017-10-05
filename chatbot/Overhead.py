@@ -18,5 +18,6 @@ class Overhead:
             log("type:\n {0}".format(entity.type))
             for md in entity.metadata:
                 log("metadata: {0}\n".format(md))
+            log("md test: {0}".format(entity.metadata['wikipedia_url']))
             log("salience: {0}".format(entity.salience))
         return response
