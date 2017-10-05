@@ -7,7 +7,8 @@ class GoogleInterpreter:
         document = self.getDocument(message)
 
         # response = self.getSentiment(client, document)
-        response = self.getEntities(client, document)
+        # response = self.getEntities(client, document)
+        response = self.getSyntax(client, document)
 
         return response
 
@@ -26,6 +27,13 @@ class GoogleInterpreter:
             encoding_type='UTF32'
         )
         return str(response.entities)
+
+    def getSyntax(self, client, document):
+        response = client.analyze_syntax(
+            document=document,
+            encoding_type='UTF32'
+        )
+        return str(response)
 
     def getDocument(self, content, lang='en', tp='PLAIN_TEXT'):
         document = language.types.Document(
