@@ -5,36 +5,30 @@ class GoogleInterpreter:
     def __init__(self):
         self.client = language.LanguageServiceClient()
 
-    def interpret(self, message):
+    def analyzeSentiment(self, message):
         document = self.getDocument(message)
-
-        # response = self.analyzeSentiment(client, document)
-        response = self.analyzeEntities(document)
-        # response = self.analyzeSyntax(client, document)
-
-        return response
-
-    def analyzeSentiment(self, document):
         response = self.client.analyze_sentiment(
             document=document,
             encoding_type='UTF32'
         )
         sentiment = response.document_sentiment
-        return str(sentiment)
+        return sentiment
 
-    def analyzeEntities(self, document):
+    def analyzeEntities(self, message):
+        document = self.getDocument(message)
         response = self.client.analyze_entities(
             document=document,
             encoding_type='UTF32'
         )
-        return str(response.entities)
+        return response.entities
 
-    def analyzeSyntax(self, document):
+    def analyzeSyntax(self, message):
+        document = self.getDocument(message)
         response = self.client.analyze_syntax(
             document=document,
             encoding_type='UTF32'
         )
-        return str(response.tokens)
+        return response.tokens
 
     def getDocument(self, content, lang='en', tp='PLAIN_TEXT'):
         document = language.types.Document(
