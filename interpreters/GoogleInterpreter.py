@@ -6,7 +6,9 @@ class GoogleInterpreter:
         client = language.LanguageServiceClient()
         document = self.getDocument(message)
 
-        response = self.getSentiment(client, document)
+        # response = self.getSentiment(client, document)
+        response = self.getEntities(client, document)
+
         return response
 
     def getSentiment(self, client, document):
@@ -17,6 +19,13 @@ class GoogleInterpreter:
         sentiment = response.document_sentiment
         sendingMessage = "score: " + str(sentiment.score) + ", mag: " + str(sentiment.magnitude)
         return sendingMessage
+
+    def getEntities(self, client, document):
+        response = client.analyze_entities(
+            document=document,
+            encoding_type='UTF32'
+        )
+        return str(response.entities)
 
     def getDocument(self, content, lang='en', tp='PLAIN_TEXT'):
         document = language.types.Document(
