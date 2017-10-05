@@ -12,7 +12,8 @@ class GoogleInterpreter:
         )
 
         sentiment = response.document_sentiment
-        sendingMessage = "score: " + str(sentiment.score) + ", mag: " + str(sentiment.magnitude)
+        entities = response.entities
+        sendingMessage = "score: " + str(sentiment.score) + ", mag: " + str(sentiment.magnitude) + ", ent: " + entities[0].name
         return sendingMessage
 
     def getDocument(self, content, lang='en', tp='PLAIN_TEXT'):
