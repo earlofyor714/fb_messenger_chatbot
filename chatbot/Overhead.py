@@ -15,7 +15,7 @@ class Overhead:
         for entity in entities:
             response += "name: " + str(entity.name) + "\n"
             log("entity:\n {}".format(str(entity)))
-            log("type:\n {0}, {1}".format(entity.type, self.googleInterpreter.getType(entity.type)))
+            log("type:\n {0}".format(entity.type))
             log("metadata:\n {0}".format(entity.metadata))
             log("salience: {0}".format(entity.salience))
         return response

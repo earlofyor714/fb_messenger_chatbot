@@ -37,7 +37,3 @@ class GoogleInterpreter:
             type=tp
         )
         return document
-
-    def getType(self, numType):
-        gType = language.types.__all__
-        return str(gType)
