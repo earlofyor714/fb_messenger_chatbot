@@ -10,7 +10,7 @@ class Overhead:
         self.ApiInterpreter = ApiInterpreter()
 
     def reply(self, message, log=None):
-        response = "Google:\n"
+        response = "Google entities:\n"
         entities = self.googleInterpreter.analyzeEntities(message)
         for entity in entities:
             response += "name: " + str(entity.name) + "\n" + \
@@ -18,4 +18,10 @@ class Overhead:
                         "wiki: " + str(entity.metadata['wikipedia_url']) + "\n" + \
                         "salience: " + str(entity.salience) + "\n"
             log("entity: {}".format(str(entity)))
+        return response
+
+    def reply_syntax(self, message, log=None):
+        response = "Google syntax:\n"
+        syntax = self.googleInterpreter.analyzeSyntax(message)
+        response += str(syntax)
         return response

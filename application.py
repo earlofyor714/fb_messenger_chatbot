@@ -43,6 +43,7 @@ def webhook():
                     chatbot = Overhead()
                     # send_message(sender_id, "roger that!")
                     send_message(sender_id, chatbot.reply(message_text, log))
+                    send_message(sender_id, chatbot.reply_syntax(message_text, log))
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
