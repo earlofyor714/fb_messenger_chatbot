@@ -33,7 +33,7 @@ class GoogleInterpreter:
             document=document,
             encoding_type='UTF32'
         )
-        return str(response)
+        return str(response.tokens)
 
     def getDocument(self, content, lang='en', tp='PLAIN_TEXT'):
         document = language.types.Document(
