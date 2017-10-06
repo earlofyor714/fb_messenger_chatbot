@@ -10,8 +10,9 @@ class Overhead:
         self.apiInterpreter = ApiInterpreter()
 
     def reply(self, message, log=print):
-        self.create_entities(log)
-        self.reply_entities(message, log)
+        # self.create_entities(log)
+        # self.reply_entities(message, log)
+        self.reply_api(message, log)
 
     def reply_entities(self, message, log=print):
         response = "Google entities:\n"
@@ -40,4 +41,10 @@ class Overhead:
         entities = ["google", "wit.ai", "api.ai"]
         response = self.apiInterpreter.saveEntities("practice", entities)
         log("create entities: {}".format(response))
+        return response
+
+    def reply_api(self, message, log=print):
+        response = "api.ai:\n"
+        response += self.apiInterpreter.interpret(message)
+        log("api: {}".format(response))
         return response
