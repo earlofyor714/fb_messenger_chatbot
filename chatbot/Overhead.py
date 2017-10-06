@@ -38,15 +38,15 @@ class Overhead:
             response += str(word)
         return response
 
-    def create_entities(self, log=print):
-        entities = ["google", "wit.ai", "api.ai"]
-        response = self.apiInterpreter.saveEntities("practice", entities)
-        log("create entities: {}".format(response))
-        return response
+    #def create_entities(self, log=print):
+    #    entities = ["google", "wit.ai", "api.ai"]
+    #    response = self.apiInterpreter.saveEntities("practice", entities)
+    #    log("create entities: {}".format(response))
+    #    return response
 
     def reply_api(self, message, log=print):
         # response = self.apiInterpreter.interpret(message)
-        response = self.apiInterpreter.practice(message)
+        response = self.apiInterpreter.analyze_event(message)
         log("api.ai: {}".format(response))
         action = response['action']
         speech = response['fulfillment']['speech']
