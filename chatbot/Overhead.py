@@ -38,6 +38,6 @@ class Overhead:
 
     def create_entities(self, log=print):
         entities = ["google", "wit.ai", "api.ai"]
-        response = self.apiInterpreter.saveEntities("Chatbot", entities)
+        response = self.apiInterpreter.saveEntities("practice", entities)
         log("create entities: {}".format(response))
         return response
