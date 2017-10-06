@@ -29,15 +29,14 @@ class ApiInterpreter:
         event = apiai.events.Event(message)
         request = self.client.event_request(event)
 
-        entries = [
-            apiai.Entry("practice", None)
-        ]
+        #entries = [
+        #    apiai.Entry("practice", None)
+        #]
 
-        request.entities = [
-            apiai.Entity("New", entries)
-        ]
+        #request.entities = [
+        #    apiai.Entity("New", entries)
+        #]
 
-        log("event: {0}".format(request))
         response = self.parseHttpResponse(request.getresponse())
         return response["result"]
 
