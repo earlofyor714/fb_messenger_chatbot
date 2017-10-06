@@ -11,7 +11,9 @@ class ApiInterpreter:
 
     def interpret(self, message):
         request = self.client.text_request()
-        request.entities = apiai.Entity("practice", ["practice"])
+        request.entities = [
+            apiai.Entity("practice", ["practice"])
+        ]
         request.query = message
         response = self.parseHttpResponse(request.getresponse())
         return response["result"]
@@ -26,7 +28,9 @@ class ApiInterpreter:
     def analyze_event(self, message="Welcome"):
         event = apiai.events.Event(message)
         request = self.client.event_request(event)
-        request.entities = apiai.Entity("practice", ["practice"])
+        request.entities = [
+            apiai.Entity("practice", ["practice"])
+        ]
         response = self.parseHttpResponse(request.getresponse())
         return response["result"]
 
