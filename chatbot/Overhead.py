@@ -17,6 +17,16 @@ class Overhead:
         log("api.ai: {}".format(response))
         # if action==switching, switch platforms
         if response['action'] == 'switching':
+            parameters = response['parameters']
+            if parameters['newbot'] == 'Google Cloud':
+                log("Google Cloud time")
+            elif parameters['newbot'] == 'witai':
+                log("wit.ai time")
+            elif parameters['newbot'] == 'apiai':
+                log("api.ai time")
+            else:
+                log("unrecognized switch")
+                return str(response)
             return str(response['fulfillment']['speech'])
         # else display raw response from appropriate bot
         return str(response)
