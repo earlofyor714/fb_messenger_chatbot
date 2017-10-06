@@ -15,7 +15,8 @@ class WitInterpreter:
         if response is None:
             return "response failed"
 
-        return str(response['_text'])
+        # return str(response['_text'])
+        return str(response)
 
     def send(self, request, response):
         message = request + ": " + response
