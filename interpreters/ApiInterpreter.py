@@ -9,8 +9,9 @@ class ApiInterpreter:
         access_token = "bc2f0a6d4a4943ca9c3c73125ffbd68c"
         self.client = apiai.ApiAI(access_token)
 
-    def interpret(self, message, log=print):
+    def interpret(self, message):
         request = self.client.text_request()
+        # request.entities = apiai.Entity("practice", ["practice"])
         request.query = message
         response = self.parseHttpResponse(request.getresponse())
         return str(response["result"])
@@ -22,19 +23,11 @@ class ApiInterpreter:
         return data
         # return json.dumps(data, indent=4, sort_keys=True)
 
-    def saveEntities(self, name, entities):
-        session_id = uuid.uuid4().hex
-        entries = []
-        for entity in entities:
-            entries.append(apiai.UserEntityEntry(entity, [entity]))
-
-        user_entities_request = self.client.user_entities_request(
-            [
-                apiai.UserEntity(name, entries, session_id)
-            ]
-        )
-        user_entities_response = user_entities_request.getresponse()
-        return user_entities_response.read()
+    def practice(self, message):
+        event = apiai.events.Event("Welcome")
+        request = self.client.event_request(event)
+        response = self.parseHttpResponse(request.getresponse())
+        return str(response["result"])
 
 # 2017-10-04T17:07:52.509428+00:00 app[web.1]: sending message to 1562796290438836:
 # {

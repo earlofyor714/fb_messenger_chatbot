@@ -45,6 +45,7 @@ class Overhead:
         return response
 
     def reply_api(self, message, log=print):
-        response = self.apiInterpreter.interpret(message, log)
+        # response = self.apiInterpreter.interpret(message)
+        response = self.apiInterpreter.practice(message)
         log("api.ai: {}".format(response))
         return response
