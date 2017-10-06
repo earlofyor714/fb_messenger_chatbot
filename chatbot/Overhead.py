@@ -48,4 +48,6 @@ class Overhead:
         # response = self.apiInterpreter.interpret(message)
         response = self.apiInterpreter.practice(message)
         log("api.ai: {}".format(response))
-        return response
+        action = response['action']
+        speech = response['fulfillment']['speech']
+        return str(action) + ", " + str(speech)

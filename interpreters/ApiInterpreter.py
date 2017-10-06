@@ -14,7 +14,7 @@ class ApiInterpreter:
         # request.entities = apiai.Entity("practice", ["practice"])
         request.query = message
         response = self.parseHttpResponse(request.getresponse())
-        return str(response["result"])
+        return response["result"]
 
     def parseHttpResponse(self, httpResponse):
         byteResponse = httpResponse.read()
@@ -27,7 +27,7 @@ class ApiInterpreter:
         event = apiai.events.Event("Welcome")
         request = self.client.event_request(event)
         response = self.parseHttpResponse(request.getresponse())
-        return str(response["result"])
+        return response["result"]
 
 # 2017-10-04T17:07:52.509428+00:00 app[web.1]: sending message to 1562796290438836:
 # {
