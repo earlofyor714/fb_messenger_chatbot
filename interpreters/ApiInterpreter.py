@@ -28,8 +28,9 @@ class ApiInterpreter:
     def analyze_event(self, message="Welcome"):
         event = apiai.events.Event(message)
         request = self.client.event_request(event)
+        entries = {"value": "practice"}
         request.entities = [
-            apiai.Entity("practice", ["practice"])
+            apiai.Entity("practice", entries)
         ]
         response = self.parseHttpResponse(request.getresponse())
         return response["result"]
