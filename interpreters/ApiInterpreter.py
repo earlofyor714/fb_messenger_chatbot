@@ -9,10 +9,11 @@ class ApiInterpreter:
         access_token = "bc2f0a6d4a4943ca9c3c73125ffbd68c"
         self.client = apiai.ApiAI(access_token)
 
-    def interpret(self, message):
+    def interpret(self, message, log=print):
         request = self.client.text_request()
         request.query = message
         response = self.parseHttpResponse(request.getresponse())
+        log("worked")
         return str(response["result"])
 
     def parseHttpResponse(self, httpResponse):
