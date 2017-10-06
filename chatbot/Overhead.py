@@ -8,6 +8,7 @@ class Overhead:
         self.googleInterpreter = GoogleInterpreter()
         self.witInterpreter = WitInterpreter()
         self.apiInterpreter = ApiInterpreter()
+        self.interpreter = 0
 
     def reply(self, message, log=print):
         # self.reply_entities(message, log)
@@ -19,16 +20,24 @@ class Overhead:
         if response['action'] == 'switching':
             parameters = response['parameters']
             if parameters['newbot'] == 'Google Cloud':
-                log("Google Cloud time")
+                self.interpreter = 0
             elif parameters['newbot'] == 'witai':
-                log("wit.ai time")
+                self.interpreter = 1
             elif parameters['newbot'] == 'apiai':
-                log("api.ai time")
+                self.interpreter = 2
             else:
                 log("unrecognized switch")
                 return str(response)
             return str(response['fulfillment']['speech'])
+
         # else display raw response from appropriate bot
+        if self.interpreter == 0:
+            response = self.reply_entities(message, log)
+        elif self.interpreter == 1:
+            response = self.witInterpreter.interpret(message)
+        else:
+            response = self.apiInterpreter.interpret(message)
+
         return str(response)
 
     def reply_entities(self, message, log=print):

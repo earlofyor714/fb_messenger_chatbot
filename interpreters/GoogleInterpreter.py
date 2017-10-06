@@ -5,6 +5,10 @@ class GoogleInterpreter:
     def __init__(self):
         self.client = language.LanguageServiceClient()
 
+    def interpret(self, message):
+        response = self.analyzeEntities(message)
+        return response
+
     def analyzeSentiment(self, message):
         document = self.getDocument(message)
         response = self.client.analyze_sentiment(
