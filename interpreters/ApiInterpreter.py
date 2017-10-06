@@ -1,13 +1,16 @@
+import uuid
+
 import apiai
 import json
 
 
 class ApiInterpreter:
-    def interpret(self, message):
+    def __init__(self):
         access_token = "bc2f0a6d4a4943ca9c3c73125ffbd68c"
+        self.client = apiai.ApiAI(access_token)
 
-        client = apiai.ApiAI(access_token)
-        request = client.text_request()
+    def interpret(self, message):
+        request = self.client.text_request()
         request.query = message
         response = self.parseHttpResponse(request.getresponse())
         return str(response["result"])
@@ -18,6 +21,20 @@ class ApiInterpreter:
         data = json.loads(jsonResponse)
         return data
         # return json.dumps(data, indent=4, sort_keys=True)
+
+    def saveEntities(self, name, entities):
+        session_id = uuid.uuid4().hex
+        entries = []
+        for entity in entities:
+            entries.append(apiai.UserEntityEntry(entity, [entity]))
+
+        user_entities_request = self.client.user_entities_request(
+            [
+                apiai.UserEntity(name, entries, session_id)
+            ]
+        )
+        user_entities_response = user_entities_request.getresponse()
+        return user_entities_response.read()
 
 # 2017-10-04T17:07:52.509428+00:00 app[web.1]: sending message to 1562796290438836:
 # {

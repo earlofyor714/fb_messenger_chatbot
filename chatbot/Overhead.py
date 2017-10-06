@@ -7,9 +7,13 @@ class Overhead:
     def __init__(self):
         self.googleInterpreter = GoogleInterpreter()
         self.witInterpreter = WitInterpreter()
-        self.ApiInterpreter = ApiInterpreter()
+        self.apiInterpreter = ApiInterpreter()
 
     def reply(self, message, log=print):
+        self.create_entities(log)
+        self.reply_entities(message, log)
+
+    def reply_entities(self, message, log=print):
         response = "Google entities:\n"
         entities = self.googleInterpreter.analyzeEntities(message)
         for entity in entities:
@@ -30,4 +34,10 @@ class Overhead:
             if len(response) + len(str(word)) > 638:
                 break
             response += str(word)
+        return response
+
+    def create_entities(self, log=print):
+        entities = ["google", "wit.ai", "api.ai"]
+        response = self.apiInterpreter.saveEntities("Chatbot", entities)
+        log("create entities: {}".format(response))
         return response
