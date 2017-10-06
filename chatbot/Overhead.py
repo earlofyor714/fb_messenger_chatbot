@@ -10,10 +10,15 @@ class Overhead:
         self.apiInterpreter = ApiInterpreter()
 
     def reply(self, message, log=print):
-        # self.create_entities(log)
         # self.reply_entities(message, log)
-        response = self.reply_api(message, log)
-        return response
+
+        # get text from api.ai
+        response = self.apiInterpreter.analyze_text(message)
+        # if action==switching, switch platforms
+        if response['action'] == 'switching':
+            return str(response['fulfillment']['speech'])
+        # else display raw response from appropriate bot
+        return str(response)
 
     def reply_entities(self, message, log=print):
         response = "Google entities:\n"
@@ -38,15 +43,8 @@ class Overhead:
             response += str(word)
         return response
 
-    #def create_entities(self, log=print):
-    #    entities = ["google", "wit.ai", "api.ai"]
-    #    response = self.apiInterpreter.saveEntities("practice", entities)
-    #    log("create entities: {}".format(response))
-    #    return response
-
     def reply_api(self, message, log=print):
-        response = self.apiInterpreter.interpret(message)
-        # response = self.apiInterpreter.analyze_event(message, log)
+        response = self.apiInterpreter.analyze_text(message)
         log("api.ai: {}".format(response))
         action = response['action']
         speech = response['fulfillment']['speech']
