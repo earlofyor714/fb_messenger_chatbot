@@ -14,6 +14,7 @@ class Overhead:
 
         # get text from api.ai
         response = self.apiInterpreter.analyze_text(message)
+        log("api.ai: {}".format(response))
         # if action==switching, switch platforms
         if response['action'] == 'switching':
             return str(response['fulfillment']['speech'])
