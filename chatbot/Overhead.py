@@ -46,7 +46,7 @@ class Overhead:
 
     def reply_api(self, message, log=print):
         # response = self.apiInterpreter.interpret(message)
-        response = self.apiInterpreter.analyze_event(message)
+        response = self.apiInterpreter.analyze_event(message, log)
         log("api.ai: {}".format(response))
         action = response['action']
         speech = response['fulfillment']['speech']

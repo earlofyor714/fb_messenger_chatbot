@@ -25,15 +25,19 @@ class ApiInterpreter:
         return data
         # return json.dumps(data, indent=4, sort_keys=True)
 
-    def analyze_event(self, message="Welcome"):
+    def analyze_event(self, message="Welcome", log=print):
         event = apiai.events.Event(message)
         request = self.client.event_request(event)
+
         entries = [
-            apiai.Entry("practice", ["test"])
+            apiai.Entry("practice", None)
         ]
+
         request.entities = [
-            apiai.Entity("practice", entries)
+            apiai.Entity("New", entries)
         ]
+
+        log("event: {0}".format(request))
         response = self.parseHttpResponse(request.getresponse())
         return response["result"]
 
