@@ -13,7 +13,6 @@ class ApiInterpreter:
         request = self.client.text_request()
         request.query = message
         response = self.parseHttpResponse(request.getresponse())
-        log("worked")
         return str(response["result"])
 
     def parseHttpResponse(self, httpResponse):
