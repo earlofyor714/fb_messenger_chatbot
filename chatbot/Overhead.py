@@ -10,13 +10,13 @@ class Overhead:
         self.apiInterpreter = ApiInterpreter()
         self.interpreter = 0
 
-    def reply(self, message, log=print):
+    # def reply(self, message, log=print):
+    def reply(self, send_message, sender_id, message, log=print):
         # self.reply_entities(message, log)
 
-        # get text from api.ai
         response = self.apiInterpreter.analyze_text(message)
         log("api.ai: {}".format(response))
-        # if action==switching, switch platforms
+
         if response['action'] == 'switching':
             parameters = response['parameters']
             if parameters['newbot'] == 'Google Cloud':
@@ -27,18 +27,19 @@ class Overhead:
                 self.interpreter = 2
             else:
                 log("unrecognized switch")
-                return str(response)
-            return str(response['fulfillment']['speech'])
+                send_message(sender_id, str(response))
+            send_message(sender_id, str(response['fulfillment']['speech']))
 
         # else display raw response from appropriate bot
         if self.interpreter == 0:
-            response = self.reply_entities(message, log)
+            send_message(sender_id, self.reply_entities(message, log))
+            send_message(sender_id, self.reply_syntax(message, log))
         elif self.interpreter == 1:
             response = self.witInterpreter.interpret(message)
+            send_message(sender_id, str(response))
         else:
             response = self.apiInterpreter.interpret(message)
-
-        return str(response)
+            send_message(sender_id, str(response))
 
     def reply_entities(self, message, log=print):
         response = "Google entities:\n"
