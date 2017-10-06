@@ -12,7 +12,8 @@ class Overhead:
     def reply(self, message, log=print):
         # self.create_entities(log)
         # self.reply_entities(message, log)
-        self.reply_api(message, log)
+        response = self.reply_api(message, log)
+        return response
 
     def reply_entities(self, message, log=print):
         response = "Google entities:\n"
